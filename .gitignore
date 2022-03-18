@@ -1,0 +1,14 @@
+/download/
+/build/
+/gui/
+/json/
+/GuiCninfo/
+/dist/
+/.vs/
+/gui.rar
+/GuiCninfo.rar
+/move_exe.bat
+/main_gui.spec
+/test.py
+/.idea/
+/venv/

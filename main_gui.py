@@ -203,7 +203,7 @@ class GuiCninfo(QtWidgets.QWidget, Ui_Form):
         headers = {
             'Accept': r'*/*',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Cookie': 'JSESSIONID=4A49726D78F4706E8776111D25E1844D; insert_cookie=45380249; _sp_ses.2141=*; routeId=.uc1; SID=43f9d443-23f0-4d20-b78d-8e1cbf723384; _sp_id.2141=9652e861-2ea6-44ad-b54c-8809684d3af6.1647231961.1.1647232672.1647231961.1be5cf4a-3edc-4989-8415-79de6d152b32',
+            'Cookie': 'JSE0-4232152b32',
             'Origin': 'http://www.cninfo.com.cn',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                           'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.39',

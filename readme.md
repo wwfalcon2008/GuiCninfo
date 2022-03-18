@@ -1,1 +1,0 @@
-GuiCninfo用于爬取cninfo中各类数据，获取到的文件存储在./download/{简称}/，文件清单为./download/list.csv

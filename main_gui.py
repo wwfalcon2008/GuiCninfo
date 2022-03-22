@@ -1,17 +1,15 @@
+import sys
 import time
-
-import json
+import urllib.request
 
 import gui
-import sys
-import urllib.request
-from PyQt5 import QtWidgets
+import json
 import requests
+from PyQt5 import QtWidgets
+from gui import Ui_Form
 
 from Cninfoer import Cninfoer
 from Dialog_Form import DialogForm
-from dialog import Ui_Dialog
-from gui import Ui_Form
 
 
 class GuiCninfo(QtWidgets.QWidget, Ui_Form):
@@ -165,6 +163,7 @@ class GuiCninfo(QtWidgets.QWidget, Ui_Form):
         else:  # 三板
             url = third_stock_url
 
+        stock = stock.lower()
         stock_json = urllib.request.urlopen(
             url=url).read().decode('utf-8')
         # print(stock_json)

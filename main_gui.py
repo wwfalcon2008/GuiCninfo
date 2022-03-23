@@ -19,7 +19,7 @@ class GuiCninfo(QtWidgets.QWidget, Ui_Form):
     pause_flag = False
     path = './download/'
     csv_name = path + 'list.csv'
-    category=''
+    category = ''
 
     def __init__(self):
         super(GuiCninfo, self).__init__()

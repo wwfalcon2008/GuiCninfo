@@ -3,9 +3,8 @@ import threading
 import time
 from urllib.request import urlretrieve
 
-import requests
-
 import json
+import requests
 
 
 class Cninfoer(threading.Thread):
@@ -39,7 +38,6 @@ class Cninfoer(threading.Thread):
         self.pushButton_stop =pushButton_stop
         self.headline = '股票代码,公司名称,公告标题,公告时间,Id,存放位置,文件链接\n'
 
-
         if not os.path.exists(self.path):
             os.mkdir(self.path)
 
@@ -49,15 +47,21 @@ class Cninfoer(threading.Thread):
             self.title_line = ''
         # self.fp = open(self.csv_name+pageNum+'.csv', 'a', encoding='utf-8')
         # 注意编码格式
-        self.fp = open(self.csv_name, 'a', encoding='gbk')
+        try:
+            self.fp = open(self.csv_name, 'a', encoding='gbk')
+        except:
+            line = '创建或打开%s异常，请检查文件是否已处于打开状态' % self.csv_name
+            print(line)
+            self.logger.append(line)
+            self.pushButton_stop.click()
 
     def run(self):
         self.counter = 0
         time.sleep(0.5)
         p = self.pageNum
         self.total_pages = self.get_totalpages_utilityfunc()
-        print('总页数:', self.total_pages,' 起始页码:',p)
-        while not self.stop_flag and int(p)<=self.total_pages:
+        print('总页数:', self.total_pages, ' 起始页码:', p)
+        while not self.stop_flag and int(p) <= self.total_pages:
             self.crawl(p, pageSize=self.pageSize,
                        column=self.column, tabName=self.tabName,
                        plate=self.plate, stock=self.stock,
@@ -66,10 +70,17 @@ class Cninfoer(threading.Thread):
                        seDate=self.seDate, sortName=self.sortName,
                        sortType=self.sortType, isHLtitle=self.isHLtitle)
             time.sleep(0.5)
-            p = str(int(p)+1)
-        self.logger.append('爬虫下载完成')
-        self.fp.close()
-        self.pushButton_stop.click()
+            p = str(int(p) + 1)
+
+        try:
+            self.fp.close()
+        except:
+            line = 'ERROR:文件%s未正常打开' % self.csv_name
+            print(line)
+            self.logger.append(line)
+        finally:
+            self.logger.append('爬虫下载完成')
+            self.pushButton_stop.click()
 
 
     def __del__(self):
@@ -151,11 +162,15 @@ class Cninfoer(threading.Thread):
             self.logger.append('没有相关内容')
         else:
             self.logger.append('下载清单记录在' + self.csv_name)
-            self.fp.write(self.title_line)
+            try:
+                self.fp.write(self.title_line)
+            except:
+                line = 'ERROR:创建或打开%s异常，请检查文件是否已处于打开状态!' % self.csv_name
+                print(line)
+                self.logger.append(line)
+                self.pushButton_stop.click()
             self.logger.append(self.headline)
             print(self.headline)
-
-
 
             for r in records["announcements"]:
                 secName = r['secName']

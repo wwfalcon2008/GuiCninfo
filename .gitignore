@@ -1,10 +1,18 @@
 /download/
 /GuiCninfo/
+/venv/
+/json/
+/build/
+/.vs/
 /dist/
+/gui/
+/test.py
 /gui.rar
 /GuiCninfo.rar
-/move_exe.bat
+/ico/icon.png
+/ico/logo.png
+/.idea/httpRequests/http-requests-log.http
+/.idea/shelf/Changes.xml
 /main_gui.spec
-/test.py
-# *~
-/venv/
+/.idea/shelf/Changes/shelved.patch
+/.idea/workspace.xml
